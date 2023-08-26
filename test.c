@@ -12,8 +12,8 @@ int main(int argc, char *argv[]) {
   if (argc < 2)
     error("%s too few argument", argv[0]);
 
-  switch (getIdentifier(argv[2])) {
-    printf("%s \n", argv[2]);
+  switch (getIdentifier(argv[1])) {
+    printf("%s \n", argv[1]);
   case 0:
     dynamicArrayTest();
     break;
@@ -39,19 +39,21 @@ void dynamicArrayTest() {
 void stackTest() {}
 
 void linkedListTest() {
-  ladd(1);
-  add_last(4);
-  add_last(6);
-  add_last(0);
-  add_last(2);
-  print_ll();
+  ll_add(1);
+  ll_add_first(2);
+  ll_add_first(2);
+  ll_add_first(2);
+  ll_add_first(2);
+  ll_add_first(2);
+  ll_add_last(9);
+  ll_print();
 }
 
 int getIdentifier(char *s) {
   printf("%s\n", s);
   if (!strcmp(s, "dynamicarray"))
     return 0;
-  if (strcmp(s, "linkedlist"))
+  if (!strcmp(s, "linkedlist"))
     return 1;
   if (!strcmp(s, "stack"))
     return 2;
