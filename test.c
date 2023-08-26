@@ -15,12 +15,15 @@ int main(int argc, char *argv[]) {
   switch (getIdentifier(argv[1])) {
     printf("%s \n", argv[1]);
   case 0:
-    dynamicArrayTest();
+    fprintf(stdout, "test\n");
     break;
   case 1:
-    linkedListTest();
+    dynamicArrayTest();
     break;
   case 2:
+    linkedListTest();
+    break;
+  case 3:
     stackTest();
     break;
   default:
@@ -50,12 +53,13 @@ void linkedListTest() {
 }
 
 int getIdentifier(char *s) {
-  printf("%s\n", s);
-  if (!strcmp(s, "dynamicarray"))
-    return 0;
-  if (!strcmp(s, "linkedlist"))
-    return 1;
-  if (!strcmp(s, "stack"))
-    return 2;
+  char *tests[] = {"tests", "dynamicarray", "linkedlist", "stack"};
+  int n = 0, tests_count = 3;
+  if (!strcmp(s, "tests"))
+    while (n <= tests_count)
+      fprintf(stdout, "%s\n", tests[n++]);
+  for (n = 0; n <= tests_count; n++)
+    if (!strcmp(s, *(tests + n)))
+      return n;
   return -1;
 }

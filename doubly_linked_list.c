@@ -11,6 +11,7 @@ int ll_remove_index(int index);
 int ll_contains(int element);
 int len();
 int is_empty();
+void error(char *s1, char *s2, FILE *e);
 
 struct node {
   int data;
@@ -54,6 +55,20 @@ int ll_add_last(int element) {
   return tail->data;
 }
 
+int ll_remove_first() {
+  if (is_empty())
+    error("operation: %s, list empty\n", "remove first", stderr);
+  int data = head->data;
+  struct node *remove = head;
+  size--;
+  if (is_empty())
+    head = tail = NULL;
+  else
+    head = head->next;
+  free(remove);
+  return data;
+}
+
 int ll_add(int element) { return ll_add_last(element); }
 
 int is_empty() { return size == 0; }
@@ -67,3 +82,7 @@ void ll_print() {
 }
 
 int len() { return size; }
+void error(char *s1, char *s2, FILE *e) {
+  fprintf(e, s1, s2);
+  exit(1);
+}
