@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
   switch (getIdentifier(argv[1])) {
     printf("%s \n", argv[1]);
   case 0:
-    fprintf(stdout, "test\n");
     break;
   case 1:
     dynamicArrayTest();
