@@ -1,3 +1,4 @@
+#include "error.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -10,17 +11,16 @@ struct Array {
 };
 
 struct Array init(int s);
-static void error(char *s1, char *s2);
 void add(struct Array s_array, int val);
 
 struct Array init(int s) {
   struct Array s_array;
   if (s <= 0)
-    error("size should be greater than 0", NULL);
+    error("size should be greater than 0", NULL, stderr);
   s_array.capacity = s;
   s_array.length = 0;
   if ((s_array.arr = (int *)malloc(s_array.capacity * sizeof(int))) == NULL)
-    error("cannot create array of provided size", NULL);
+    error("cannot create array of provided size", NULL, stderr);
   return s_array;
 }
 
@@ -38,12 +38,6 @@ void add(struct Array s_array, int val) {
 
 int get(struct Array s_array, int idx) {
   if (idx > s_array.length)
-    error("index out of bounds", NULL);
+    error("index out of bounds", NULL, stderr);
   return *(s_array.arr + idx);
-}
-
-static void error(char *s1, char *s2) {
-  fprintf(stdout, s1, s2);
-  fprintf(stdout, "\n");
-  exit(1);
 }

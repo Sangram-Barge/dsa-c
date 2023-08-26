@@ -1,3 +1,4 @@
+#include "error.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -11,7 +12,6 @@ int ll_remove_index(int index);
 int ll_contains(int element);
 int len();
 int is_empty();
-void error(char *s1, char *s2, FILE *e);
 
 struct node {
   int data;
@@ -63,8 +63,26 @@ int ll_remove_first() {
   size--;
   if (is_empty())
     head = tail = NULL;
-  else
+  else {
     head = head->next;
+    head->prev = NULL;
+  }
+  free(remove);
+  return data;
+}
+
+int ll_remove_last() {
+  if (is_empty())
+    error("operation: %s, list empty\n", "remove last", stderr);
+  int data = tail->data;
+  struct node *remove = tail;
+  size--;
+  if (is_empty())
+    head = tail = NULL;
+  else {
+    tail = tail->prev;
+    tail->next = NULL;
+  }
   free(remove);
   return data;
 }
@@ -74,6 +92,8 @@ int ll_add(int element) { return ll_add_last(element); }
 int is_empty() { return size == 0; }
 
 void ll_print() {
+  if (head == NULL)
+    fprintf(stderr, "empty list\n");
   struct node *trav = head;
   while (trav != NULL) {
     fprintf(stdout, "%d \n", trav->data);
@@ -82,7 +102,3 @@ void ll_print() {
 }
 
 int len() { return size; }
-void error(char *s1, char *s2, FILE *e) {
-  fprintf(e, s1, s2);
-  exit(1);
-}
