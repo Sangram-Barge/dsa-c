@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int ll_add(int element);
-int ll_add_last(int element);
-int ll_add_first(int element);
-int ll_remove_first();
-int ll_remove_last();
+int ll_add(int element);       // done
+int ll_add_last(int element);  // done
+int ll_add_first(int element); // done
+int ll_remove_first();         // done
+int ll_remove_last();          // done
 int ll_add_index(int index, int element);
 int ll_remove_index(int index);
 int ll_contains(int element);
@@ -22,6 +22,25 @@ struct node {
 struct node *head = NULL;
 struct node *tail = NULL;
 int size = 0;
+
+int ll_add_index(int index, int element) {
+  if (index < 0 || index > len() - 1)
+    error("index out of bounds\n", NULL, stderr);
+  if (index == 0)
+    return ll_add_first(element);
+  else if (index == size - 1)
+    return ll_add_last(element);
+  struct node *temp = (struct node *)malloc(sizeof(struct node)), *trav = head;
+  temp->data = element;
+  int i = 0;
+  while (i++ < index)
+    trav = trav->next;
+  temp->next = trav;
+  temp->prev = trav->prev;
+  temp->prev->next = temp;
+  temp->next->prev = temp;
+  return element;
+}
 
 int ll_add_first(int element) {
   struct node *temp = (struct node *)malloc(sizeof(struct node));

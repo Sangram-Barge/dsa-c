@@ -57,6 +57,14 @@ void linkedListTest() {
   printf("len %d\n", len());
   fprintf(stdout, "after remove last empty list\n");
   ll_print();
+  fprintf(stdout, "----------testing add index----------\n");
+  ll_add_first(0);
+  ll_add_first(1);
+  ll_add_first(2);
+  ll_add_first(3);
+  ll_add_first(4);
+  ll_add_index(1, 100);
+  ll_print();
 }
 
 int getIdentifier(char *s) {
