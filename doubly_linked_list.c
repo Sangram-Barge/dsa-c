@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef LL
+#define LL
 int ll_add(int element);                  // done
 int ll_add_last(int element);             // done
 int ll_add_first(int element);            // done
@@ -10,9 +12,10 @@ int ll_remove_last();                     // done
 int ll_add_index(int index, int element); // done
 int ll_remove_index(int index);           // done
 int ll_contains(int element);             // done
-int len();                                // done
+int ll_len();                             // done
 int is_empty();                           // done
-
+int ll_find_first();
+int ll_find_last();
 struct node {
   int data;
   struct node *next;
@@ -20,7 +23,9 @@ struct node {
 };
 
 struct node *head = NULL;
+
 struct node *tail = NULL;
+
 int size = 0;
 
 int ll_contains(int element) {
@@ -33,8 +38,20 @@ int ll_contains(int element) {
   return 0;
 }
 
+int ll_find_first() {
+  if (is_empty())
+    error("empty list\n", NULL, stderr);
+  return head->data;
+}
+
+int ll_find_last() {
+  if (is_empty())
+    error("empty list\n", NULL, stderr);
+  return tail->data;
+}
+
 int ll_add_index(int index, int element) {
-  if (index < 0 || index > len() - 1)
+  if (index < 0 || index > ll_len() - 1)
     error("index out of bounds\n", NULL, stderr);
   if (index == 0)
     return ll_add_first(element);
@@ -54,11 +71,11 @@ int ll_add_index(int index, int element) {
 }
 
 int ll_remove_index(int index) {
-  if (index < 0 || index > len() - 1)
+  if (index < 0 || index > ll_len() - 1)
     error("index out of bounds\n", NULL, stderr);
   if (index == 0)
     return ll_remove_first();
-  else if (index == len() - 1)
+  else if (index == ll_len() - 1)
     return ll_remove_last();
   struct node *trav = head;
   int i = 0;
@@ -150,4 +167,5 @@ void ll_print() {
   }
 }
 
-int len() { return size; }
+int ll_len() { return size; }
+#endif /* ifndef LL */

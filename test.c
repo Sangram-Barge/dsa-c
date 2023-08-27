@@ -1,6 +1,7 @@
 #include "doubly_linked_list.c"
 #include "dynamicarray.c"
 #include "error.c"
+#include "stack.c"
 #include <stdio.h>
 #include <string.h>
 
@@ -39,7 +40,20 @@ void dynamicArrayTest() {
     fprintf(stdout, "idx : %d val : %d\n", i, get(my_array, i));
 }
 
-void stackTest() {}
+void stackTest() {
+  st_push(1);
+  st_push(3);
+  st_print();
+  st_push(8);
+  st_push(10);
+  st_push(24);
+  st_push(99);
+  st_print();
+  fprintf(stdout, "peek %d\n", st_peek());
+  st_pop();
+  st_pop();
+  fprintf(stdout, "pop %d\n", st_pop());
+}
 
 void linkedListTest() {
   ll_add(1);
@@ -52,9 +66,9 @@ void linkedListTest() {
   ll_remove_last();
   fprintf(stdout, "after remove last\n");
   ll_print();
-  printf("len %d\n", len());
+  printf("len %d\n", ll_len());
   ll_remove_last();
-  printf("len %d\n", len());
+  printf("len %d\n", ll_len());
   fprintf(stdout, "after remove last empty list\n");
   ll_print();
   fprintf(stdout, "----------testing add index----------\n");
@@ -69,7 +83,7 @@ void linkedListTest() {
   ll_remove_index(0);
   ll_print();
   fprintf(stdout, "----------testing remove index last----------\n");
-  ll_remove_index(len() - 1);
+  ll_remove_index(ll_len() - 1);
   ll_print();
   fprintf(stdout, "----------testing remove index 2----------\n");
   ll_remove_index(2);
