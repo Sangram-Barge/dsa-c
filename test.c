@@ -65,6 +65,15 @@ void linkedListTest() {
   ll_add_first(4);
   ll_add_index(1, 100);
   ll_print();
+  fprintf(stdout, "----------testing remove index 0----------\n");
+  ll_remove_index(0);
+  ll_print();
+  fprintf(stdout, "----------testing remove index last----------\n");
+  ll_remove_index(len() - 1);
+  ll_print();
+  fprintf(stdout, "----------testing remove index 2----------\n");
+  ll_remove_index(2);
+  ll_print();
 }
 
 int getIdentifier(char *s) {

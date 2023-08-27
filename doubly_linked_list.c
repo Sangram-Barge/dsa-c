@@ -39,7 +39,27 @@ int ll_add_index(int index, int element) {
   temp->prev = trav->prev;
   temp->prev->next = temp;
   temp->next->prev = temp;
+  size++;
   return element;
+}
+
+int ll_remove_index(int index) {
+  if (index < 0 || index > len() - 1)
+    error("index out of bounds\n", NULL, stderr);
+  if (index == 0)
+    return ll_remove_first();
+  else if (index == len() - 1)
+    return ll_remove_last();
+  struct node *trav = head;
+  int i = 0;
+  while (i++ < index)
+    trav = trav->next;
+  int data = trav->data;
+  trav->prev->next = trav->next;
+  trav->next->prev = trav->prev;
+  free(trav);
+  size--;
+  return data;
 }
 
 int ll_add_first(int element) {
