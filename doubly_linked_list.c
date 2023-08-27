@@ -2,16 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int ll_add(int element);       // done
-int ll_add_last(int element);  // done
-int ll_add_first(int element); // done
-int ll_remove_first();         // done
-int ll_remove_last();          // done
-int ll_add_index(int index, int element);
-int ll_remove_index(int index);
-int ll_contains(int element);
-int len();
-int is_empty();
+int ll_add(int element);                  // done
+int ll_add_last(int element);             // done
+int ll_add_first(int element);            // done
+int ll_remove_first();                    // done
+int ll_remove_last();                     // done
+int ll_add_index(int index, int element); // done
+int ll_remove_index(int index);           // done
+int ll_contains(int element);             // done
+int len();                                // done
+int is_empty();                           // done
 
 struct node {
   int data;
@@ -22,6 +22,16 @@ struct node {
 struct node *head = NULL;
 struct node *tail = NULL;
 int size = 0;
+
+int ll_contains(int element) {
+  if (head->data == element)
+    return 1;
+  struct node *trav = head;
+  while ((trav = trav->next) != NULL)
+    if (trav->data == element)
+      return 1;
+  return 0;
+}
 
 int ll_add_index(int index, int element) {
   if (index < 0 || index > len() - 1)

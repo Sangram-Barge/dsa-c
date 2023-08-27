@@ -74,6 +74,9 @@ void linkedListTest() {
   fprintf(stdout, "----------testing remove index 2----------\n");
   ll_remove_index(2);
   ll_print();
+  fprintf(stdout, "----------testing contains----------\n");
+  int d = 100;
+  fprintf(stdout, "list %scontains %d\n", ll_contains(d) ? "" : "does not ", d);
 }
 
 int getIdentifier(char *s) {
