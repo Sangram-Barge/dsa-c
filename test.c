@@ -44,7 +44,7 @@ void dynamicArrayTest() {
     fprintf(stdout, "idx : %d val : %d\n", i, get(my_array, i));
 }
 
-void queueTest() {}
+void queueTest() { fprintf(stdout, "no tests available for queue\n"); }
 
 void stackTest() {
   st_push(1);
@@ -100,8 +100,8 @@ void linkedListTest() {
 }
 
 int getIdentifier(char *s) {
-  char *tests[] = {"tests", "dynamicarray", "linkedlist", "stack"};
-  int n = 0, tests_count = 3;
+  char *tests[] = {"tests", "dynamicarray", "linkedlist", "stack", "queue"};
+  int n = 0, tests_count = 4;
   if (!strcmp(s, "tests"))
     while (n <= tests_count)
       fprintf(stdout, "%s\n", tests[n++]);
