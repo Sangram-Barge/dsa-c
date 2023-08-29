@@ -9,6 +9,7 @@ int getIdentifier(char *s);
 void dynamicArrayTest();
 void stackTest();
 void linkedListTest();
+void queueTest();
 
 int main(int argc, char *argv[]) {
   if (argc < 2)
@@ -27,6 +28,9 @@ int main(int argc, char *argv[]) {
   case 3:
     stackTest();
     break;
+  case 4:
+    queueTest();
+    break;
   default:
     fprintf(stderr, "invlid argument %s\n", argv[0]);
   }
@@ -39,6 +43,8 @@ void dynamicArrayTest() {
   for (int i = 0; i < my_array.length; i++)
     fprintf(stdout, "idx : %d val : %d\n", i, get(my_array, i));
 }
+
+void queueTest() {}
 
 void stackTest() {
   st_push(1);
