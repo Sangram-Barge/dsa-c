@@ -1,6 +1,7 @@
 #include "doubly_linked_list.c"
 #include "dynamicarray.c"
 #include "error.c"
+#include "queue.c"
 #include "stack.c"
 #include <stdio.h>
 #include <string.h>
@@ -44,7 +45,12 @@ void dynamicArrayTest() {
     fprintf(stdout, "idx : %d val : %d\n", i, get(my_array, i));
 }
 
-void queueTest() { fprintf(stdout, "no tests available for queue\n"); }
+void queueTest() {
+  q_offer(2);
+  q_offer(3);
+  q_offer(8);
+  fprintf(stdout, "size %d\n", q_size());
+}
 
 void stackTest() {
   st_push(1);
