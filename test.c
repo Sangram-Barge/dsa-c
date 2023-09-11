@@ -1,3 +1,4 @@
+#include "binarysearch.c"
 #include "doubly_linked_list.c"
 #include "dynamicarray.c"
 #include "error.c"
@@ -6,11 +7,13 @@
 #include <stdio.h>
 #include <string.h>
 
+int len(int arr[]);
 int getIdentifier(char *s);
 void dynamicArrayTest();
 void stackTest();
 void linkedListTest();
 void queueTest();
+void binarySearchTest();
 
 int main(int argc, char *argv[]) {
   if (argc < 2)
@@ -31,6 +34,9 @@ int main(int argc, char *argv[]) {
     break;
   case 4:
     queueTest();
+    break;
+  case 5:
+    binarySearchTest();
     break;
   default:
     fprintf(stderr, "invlid argument %s\n", argv[0]);
@@ -106,8 +112,9 @@ void linkedListTest() {
 }
 
 int getIdentifier(char *s) {
-  char *tests[] = {"tests", "dynamicarray", "linkedlist", "stack", "queue"};
-  int n = 0, tests_count = 4;
+  char *tests[] = {"tests", "dynamicarray", "linkedlist",
+                   "stack", "queue",        "binarys"};
+  int n = 0, tests_count = 5;
   if (!strcmp(s, "tests"))
     while (n <= tests_count)
       fprintf(stdout, "%s\n", tests[n++]);
@@ -115,4 +122,13 @@ int getIdentifier(char *s) {
     if (!strcmp(s, *(tests + n)))
       return n;
   return -1;
+}
+
+void binarySearchTest() {
+  fprintf(stdout, "binary search\n");
+  int arr[] = {1, 3, 6, 8, 9, 10, 14, 29, 54, 100, 374, 533};
+  int length = sizeof(arr) / sizeof(int);
+  fprintf(stdout, "array length %d\n", length);
+  int idx = bisearch(arr, 0, length, 10);
+  fprintf(stdout, "10 is at %d location\n", idx);
 }
